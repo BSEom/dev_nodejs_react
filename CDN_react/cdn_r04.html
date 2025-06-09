@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .login-box {
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        width: 500px;
+        height: 350px;
+        background-color: silver;
+      }
+      form {
+        align-self: flex-start;
+      }
+      input {
+        width: 100%;
+      }
+    </style>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const App = () => {
+        const [clicked, setClicked] = React.useState(false); // clicked의 초기값 설정
+        // const change = () => setClicked(true);
+        const change = () => setClicked(!clicked);
+        return (
+          <>
+            <h1>True or False 값 설정</h1>
+            <h2>{clicked + ""}</h2>
+            <hr />
+            <button onClick={change}>
+              {clicked ? "클릭하면 false" : "클릭하면 true"}
+            </button>
+
+            {clicked && <Modal />}
+          </>
+        );
+      };
+
+      const Modal = () => {
+        // div.login-box>h2{login}+form>(div.usr-box>input+label)*2
+        return (
+          <>
+            <div class="login-box">
+              <h2>login</h2>
+              <form action="">
+                <div class="usr-box">
+                  <label for="">Username: </label>
+                  <input type="text" />
+                </div>
+                <div class="usr-box">
+                  <label for="">Password: </label>
+                  <input type="text" />
+                </div>
+              </form>
+            </div>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>

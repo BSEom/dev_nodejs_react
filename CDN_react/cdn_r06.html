@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // let ar = true;
+      let temp = 0;
+
+      const App = () => {
+        const [num1, setNum1] = React.useState(0);
+        const ch1 = () => setNum1((num1 + 1) % 6);
+        const [num2, setNum2] = React.useState(0);
+        const ch2 = () => setNum2(5 - Math.abs(5 - ((temp += 1) % 10)));
+        // const ch2p = () => setNum2(num2 + 1);
+        // const ch2m = () => setNum2(num2 - 1);
+        console.log(temp, num2);
+
+        const arr = ["제로", "하나", "둘", "셋", "넷", "다섯"];
+
+        // ar ? ch2p : ch2m
+        // if (num2 == 5) {
+        //   ar = false;
+        // } else if (num2 == 0) {
+        //   ar = true;
+        // }
+
+        return (
+          <>
+            <h1>숫자증가</h1>
+            <h2>
+              1번형식: <mark>{`0->1->2->3->4->5->0->1->2->3->4...`}</mark>
+            </h2>
+            <h2>{num1}</h2>
+            <h2>
+              <strong>{arr[num1]}</strong>
+            </h2>
+            <button onClick={ch1}>{`값이 ${num1}인 버튼(${arr[num1]})`}</button>
+            <hr />
+            <h2>
+              2번형식: <mark>{`0->1->2->3->4->5->4->3->2->1->0...`}</mark>
+            </h2>
+            <h2>{num2}</h2>
+            <button onClick={ch2}>{`값이 ${num2}인 버튼`}</button>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
